@@ -1,0 +1,147 @@
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: #f5f3eb; 
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.home-alumno-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+
+.search-bar {
+    width: 150%;
+    max-width: 600px;
+    background-color: #B17F59;
+    padding: 15px; 
+    border-radius: 8px;
+    margin-top: 45px; 
+    display: flex;
+    justify-content: center;
+}
+
+
+.search-bar input {
+    width: 100%; 
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: #B17F59;
+    outline: none;
+}
+
+.search-bar input::placeholder {
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: bold;
+}
+
+
+.spacer {
+    height: 120px;
+}
+
+.libros-list {
+    width: 150%;
+    max-width: 800px;
+    height: 65vh;
+    overflow-y: auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+    text-align: center;
+}
+
+.libros-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.libro-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+.btn-prestamo {
+    padding: 8px 12px;
+    background-color: #cf9264;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn-prestamo:hover {
+    background-color: #B17F59;
+}
+
+.libros-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.libros-list::-webkit-scrollbar-thumb {
+    background: #8d6e63;
+    border-radius: 5px;
+}
+
+
+.logout-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #cf9264;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.logout-button:hover {
+    background-color: #B17F59;
+}
+
+.prestamos-list {
+    width: 150%;
+    max-width: 800px;
+    height: 50vh;
+    overflow-y: auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+    text-align: center;
+}
+
+.prestamo-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+.prestado-label {
+    color: red;
+    font-weight: bold;
+}
