@@ -8,7 +8,7 @@ function HomeAlumno() {
   const [search, setSearch] = useState("");
   const [misPrestamos, setMisPrestamos] = useState([]);
   const navigate = useNavigate(); 
-
+  const matricula = "A12345";  // Aquí iría la matrícula del usuario logueado
 
   useEffect(() => {
     axios.get("http://127.0.0.1:8000/libros")
@@ -16,25 +16,31 @@ function HomeAlumno() {
       .catch(error => console.error("❌ Error cargando libros:", error));
   }, []);
 
-  
   useEffect(() => {
-    axios.get("http://127.0.0.1:8000/prestamos?matricula=A12345") 
-      .then(response => setMisPrestamos(response.data))
-      .catch(error => console.error("❌ Error cargando préstamos:", error));
+    axios.get(`http://127.0.0.1:8000/prestamos/${matricula}`)
+      .then(response => {
+        setMisPrestamos(Array.isArray(response.data) ? response.data : []);
+      })
+      .catch(error => {
+        console.error("❌ Error cargando préstamos:", error);
+        setMisPrestamos([]);
+      });
   }, []);
 
-
   const solicitarPrestamo = (libroId) => {
-    axios.post("http://127.0.0.1:8000/prestamos", { item_id: libroId, matricula: "A12345" }) 
+    axios.post("http://127.0.0.1:8000/prestamos", { item_id: libroId, matricula })
       .then(() => {
         alert("✅ Préstamo solicitado con éxito");
         setLibros(libros.map(libro => 
           libro.id === libroId ? { ...libro, estado: "prestado" } : libro
         ));
+
+        axios.get(`http://127.0.0.1:8000/prestamos/${matricula}`)
+          .then(response => setMisPrestamos(Array.isArray(response.data) ? response.data : []))
+          .catch(error => console.error("❌ Error actualizando préstamos:", error));
       })
       .catch(error => alert("❌ Error al solicitar préstamo: " + error.message));
   };
-
 
   const cerrarSesion = () => {
     navigate("/");
@@ -43,7 +49,6 @@ function HomeAlumno() {
   return (
     <div className="home-alumno-container">
       <button className="logout-button" onClick={cerrarSesion}>Cerrar Sesión</button>
-
 
       <div className="search-bar">
         <input
@@ -56,7 +61,6 @@ function HomeAlumno() {
 
       <div className="spacer"></div>
 
-      
       <div className="libros-list">
         <h2>📚 Libros Disponibles</h2>
         {libros.length > 0 ? (
@@ -86,13 +90,12 @@ function HomeAlumno() {
         )}
       </div>
 
-      
       <div className="prestamos-list">
         <h2>📖 Mis Préstamos</h2>
-        {misPrestamos.length > 0 ? (
+        {Array.isArray(misPrestamos) && misPrestamos.length > 0 ? (
           <ul>
             {misPrestamos.map((prestamo) => (
-              <li key={prestamo.id} className="prestamo-item">
+              <li key={prestamo.item_id} className="prestamo-item">
                 <div>
                   <strong>{prestamo.titulo}</strong> - {prestamo.autor}
                   <p>📅 Inicio: {prestamo.fecha_inicio} | 📅 Fin: {prestamo.fecha_fin}</p>
