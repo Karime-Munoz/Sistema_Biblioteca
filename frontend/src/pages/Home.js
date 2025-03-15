@@ -21,7 +21,6 @@ function Home() {
       <div className="content">
         <h1>Bienvenido a BiblioTEC</h1>
         <p>Explora nuestra colección de libros y gestiona tus préstamos.</p>
-        <p>Hecho por Karime Muñoz - A01638587 y </p>
         <Link to="/login" className="btn">Acceder</Link>
       </div>
     </div>
