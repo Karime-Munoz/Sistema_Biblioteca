@@ -1,5 +1,5 @@
 Hecho por: 
-Karime Monzerrat Muñoz Franco - A01638587
+Karime Monzerrat Muñoz Franco y Carlos Gilberto Montes Peña
 
 Instrucciones: 
 en la terminal en backend (cd backend) poner = python -m uvicorn main:app --reload
